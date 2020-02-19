@@ -6,8 +6,8 @@
    (letfn [(f [s r]
              (if (empty? s) ()
                  (let [r' (inc r)
-                       s1 #(f (coll s) r')]
-                   (lazy-seq (if (= 0 (rem r m))
+                       s1 #(f (rest s) r')]
+                   (lazy-seq (if (zero? (rem r m))
                                (s1)
                                (cons (first s) (s1)))))))]
      (f s0 1)))

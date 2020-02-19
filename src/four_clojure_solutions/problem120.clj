@@ -6,7 +6,7 @@
    (letfn [(f [n]
              (loop [m n
                     res 0]
-               (if (= 0 m)
+               (if (zero? m)
                  res
                  (let [q (quot m 10)
                        r (rem m 10)]

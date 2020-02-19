@@ -5,7 +5,7 @@
  (fn [e0]
    #(loop [e e0
           result 1]
-     (if (= e 0) result (recur (dec e) (* result %)))))
+     (if (zero? e) result (recur (dec e) (* result %)))))
 
  #(= 256 ((% 2) 16), ((% 8) 2))
  #(= [1 8 27 64] (map (% 3) [1 2 3 4]))

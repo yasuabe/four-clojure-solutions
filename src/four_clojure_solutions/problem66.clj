@@ -6,7 +6,7 @@
    (loop [a a0
           b b0]
      (let [r (rem a b)]
-       (if (= 0 r) b (recur b r)))))
+       (if (zero? r) b (recur b r)))))
 
  #(= (% 2 4) 2)
  #(= (% 10 5) 5)
