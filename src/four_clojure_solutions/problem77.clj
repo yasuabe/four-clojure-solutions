@@ -3,7 +3,7 @@
 
 (checker
  (fn [words]
-   (->> (apply merge-with into (map #(hash-map (sort %1) #{%1}) words))
+   (->> (apply merge-with into (map #(hash-map (sort %) #{%}) words))
         vals
         (filter #(> (count %1) 1))
         set))

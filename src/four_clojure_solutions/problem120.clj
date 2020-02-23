@@ -13,7 +13,7 @@
                    (recur q (+ res (* r r)))))))
            (count-if [pred coll]
              (reduce (fn [cnt val] (if (pred val) (inc cnt) cnt)) 0 coll))]
-     (count-if #(< %1 (f %1)) coll)))
+     (count-if #(< % (f %)) coll)))
 
  #(= 8 (% (range 10)))
  #(= 19 (% (range 30)))

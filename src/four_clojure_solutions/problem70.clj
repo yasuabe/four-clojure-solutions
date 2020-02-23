@@ -4,7 +4,7 @@
 (checker
  (fn [s]
    (->> (clojure.string/split s #"[ .!?\\-]")
-        (map #(list (.toUpperCase %1) %1))
+        (map #(list (.toUpperCase %) %))
         (sort-by first)
         (map second)))
 
