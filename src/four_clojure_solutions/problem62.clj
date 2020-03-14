@@ -2,18 +2,12 @@
   (:require [four-clojure-solutions.checker :refer [checker]]))
 
 (checker
- (fn [keys vals]
-   (loop [ks keys
-          vs vals
-          result {}]
-     (if (or (empty? ks) (empty? vs))
-       result
-       (recur (coll ks)
-              (coll vs)
-              (assoc result (first ks) (first vs))))))
+ (fn [g init]
+   (letfn [(f [a]
+             (lazy-seq (cons a (f (g a)))))]
+     (f init))) 
 
- #(= (% [:a :b :c] [1 2 3]) {:a 1, :b 2, :c 3})
- #(= (% [1 2 3 4] ["one" "two" "three"]) {1 "one", 2 "two", 3 "three"})
- #(= (% [:foo :bar] ["foo" "bar" "baz"]) {:foo "foo", :bar "bar"}))
-
+ (fn [f] (= (take 5 (f #(* 2 %) 1)) [1 2 4 8 16]))
+ (fn [f] (= (take 100 (f inc 0)) (take 100 (range))))
+ (fn [f] (= (take 9 (f #(inc (mod % 3)) 1)) (take 9 (cycle [1 2 3])))))
 
